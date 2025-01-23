@@ -1,0 +1,2014 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn@Home Mockups</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsXp1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- General styles -->
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .mockup-view {
+        width: 960px;
+        height: 700px;
+        border-radius: 12px;
+        margin: 20px auto;
+        padding: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+      .mockup-view header {
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .mockup-view main {
+        flex: 1;
+        display: grid;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+      }
+      .mockup-view aside {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 80%;
+        max-height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: auto;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .form-label {
+        font-weight: 500;
+      }
+    </style>
+
+    <!-- LOGIN SECTION -->
+    <style>
+      .login-form-container {
+        align-self: center;
+        width: 350px;
+        margin: auto;
+      }
+    </style>
+
+    <!-- CHAT SECTION -->
+    <style>
+      .chat-container {
+        grid-template-columns: 1fr 3fr;
+      }
+      .contact-list {
+        border-right: 1px solid #ddd;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      .list-group {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .chat-window {
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      .chat-body {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ddd;
+        margin-right: 10px;
+      }
+      .list-group-item {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+      }
+      .chat-bubble {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .chat-bubble small {
+        font-size: 0.7rem;
+        align-self: flex-end;
+      }
+      .chat-bubble.sent {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+      }
+      .chat-bubble.received {
+        background-color: #e9ecef;
+        align-self: flex-start;
+      }
+    </style>
+
+    <!-- CALENDAR SECTION -->
+    <style>
+      .calendar-container {
+        display: flex;
+        gap: 20px;
+      }
+      .calendar-panel {
+        width: 35%;
+        background: #f8f9fa;
+        border-right: 1px solid #ddd;
+      }
+      .event-panel {
+        flex: 1;
+        background: #fff;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+      .calendar-day {
+        font-weight: bold;
+        text-align: center;
+
+        color: #6c757d;
+      }
+      .calendar-date {
+        text-align: center;
+        padding: 8px;
+        border-radius: 5px;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        position: relative;
+      }
+      .calendar-date.selected {
+        background: #cfe2ff;
+        border: 1px solid #0d6efd;
+      }
+      .calendar-date .event {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #212529;
+        position: absolute;
+        bottom: 5px;
+        left: 35%;
+        transform: translateX(-50%);
+      }
+      .calendar-date .appointment {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        position: absolute;
+        bottom: 5px;
+        left: 65%;
+        transform: translateX(-50%);
+      }
+    </style>
+
+    <!-- TASK MANAGEMENT SECTION -->
+    <style>
+      .task-sections {
+        grid-template-columns: 40% 60%;
+      }
+      .task-panel {
+        background: #f8f9fa;
+        border-right: 1px solid #ddd;
+      }
+
+      .task-details-panel {
+        width: 521px;
+      }
+
+      .priority-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-left: 5px;
+      }
+
+      .task-selected {
+        background-color: #cfe2ff; /* Light blue background to indicate selection */
+        font-weight: bold; /* Highlight the text */
+        padding-left: 12px; /* Adjust padding for border space */
+      }
+    </style>
+
+    <!-- DASHBOARD SECTION -->
+    <style>
+      /* Grid layout for the dashboard */
+      .dashboard-container {
+        display: grid;
+        grid-template-areas:
+          "messages events"
+          "tasks tasks";
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        padding: 20px;
+      }
+
+      /* Styling for each section */
+      .unread-messages {
+        grid-area: messages;
+        background: #f0f8ff !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .unread-messages h5 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.2rem;
+      }
+
+      .unread-messages .message-count {
+        font-size: 3rem;
+        text-align: center;
+        font-weight: bold;
+        color: #0d6efd; /* Primary blue color */
+      }
+
+      .unread-messages .btn {
+        align-self: flex-end;
+        padding: 6px 12px;
+      }
+
+      .upcoming-events {
+        grid-area: events;
+      }
+
+      .tasks-assignments {
+        grid-area: tasks;
+      }
+
+      /* Card styles */
+      .card {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* List styles for tasks and assignments */
+      .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Differentiation between tasks and assignments */
+      .task-label {
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .assignment-label {
+        font-weight: bold;
+        color: #28a745;
+      }
+    </style>
+
+    <!-- Calendar Page View -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Filtered by day -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date selected">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - View event details -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Cours mathématiques</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Event Date -->
+          <div class="mb-3">
+            <p class="text-secondary">5 Décembre @ 10:00</p>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              aspernatur minima sit cum delectus, laboriosam sunt ratione
+              obcaecati corrupti officiis labore, exercitationem porro facere
+              architecto esse?
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <div>
+            <button class="btn btn-outline-secondary btn-sm">Modifier</button>
+            <button class="btn btn-outline-danger btn-sm">Supprimer</button>
+          </div>
+        </div>
+      </aside>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - View appointment details -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title text-primary">
+            Consultation étudiante
+            <span class="text-dark fw-normal">avec Louis</span>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Event Date -->
+          <div class="mb-3">
+            <p class="text-secondary">25 Décembre @ 14:00</p>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              aspernatur minima sit cum delectus, laboriosam sunt ratione
+              obcaecati corrupti officiis labore, exercitationem porro facere
+              architecto esse?
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end"></div>
+      </aside>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Nouvel Événement -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Planifier un nouvel événement</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Title and avec Whom Fields -->
+          <div class="row mb-3">
+            <div class="col-md">
+              <label for="eventTitle" class="form-label fw-bold">Titre</label>
+              <input type="text" id="eventTitle" class="form-control" />
+            </div>
+          </div>
+          <!-- Date and Time Fields -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="eventDate" class="form-label fw-bold">Date</label>
+              <input type="date" id="eventDate" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label for="eventTime" class="form-label fw-bold">Heure</label>
+              <input type="time" id="eventTime" class="form-control" />
+            </div>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <label for="eventDetails" class="form-label fw-bold">Détails</label>
+            <textarea
+              id="eventDetails"
+              rows="4"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <button class="btn btn-primary btn-sm">Planifier</button>
+        </div>
+      </aside>
+
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Edit event -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-end mb-3">
+            <div>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Modifier l'événement</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Title and avec Whom Fields -->
+          <div class="row mb-3">
+            <div class="col-md">
+              <label for="eventTitle" class="form-label fw-bold">Titre</label>
+              <input
+                type="text"
+                id="eventTitle"
+                class="form-control"
+                value="Cours mathématiques"
+              />
+            </div>
+          </div>
+          <!-- Date and Time Fields -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="eventDate" class="form-label fw-bold">Date</label>
+              <input
+                type="date"
+                id="eventDate"
+                class="form-control"
+                value="2024-12-05"
+              />
+            </div>
+            <div class="col-md-6">
+              <label for="eventTime" class="form-label fw-bold">Heure</label>
+              <input
+                type="time"
+                id="eventTime"
+                class="form-control"
+                value="10:00"
+              />
+            </div>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <label for="eventDetails" class="form-label fw-bold">Détails</label>
+            <textarea id="eventDetails" rows="4" class="form-control">
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae aspernatur minima sit cum delectus, laboriosam sunt ratione obcaecati</textarea
+            >
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <button class="btn btn-primary btn-sm">Modifier</button>
+        </div>
+      </aside>
+
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Volunteer -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-between mb-3">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="false"
+                aria-expanded="true"
+              >
+                Tous les événements et RDV
+              </button>
+              <ul
+                class="dropdown-menu show"
+                aria-labelledby="dropdownMenuButton"
+              >
+                <li>
+                  <a class="dropdown-item disabled"
+                    >Tous les événements et RDV</a
+                  >
+                </li>
+                <li><a class="dropdown-item">Mes Événements</a></li>
+                <li><a class="dropdown-item">Rendez-vous avec Jean</a></li>
+                <li>
+                  <a class="dropdown-item">Rendez-vous avec Michelle</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-sm">
+                Nouveau Rendez-vous
+              </button>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Volunteer - View appointment details -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-between mb-3">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="true"
+                aria-expanded="true"
+              >
+                Tous les événements et RDV
+              </button>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-sm">
+                Nouveau Rendez-vous
+              </button>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title text-primary">
+            Consultation étudiante
+            <span class="text-dark fw-normal">avec Louis</span>
+          </h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Event Date -->
+          <div class="mb-3">
+            <p class="text-secondary">25 Décembre @ 14:00</p>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+              aspernatur minima sit cum delectus, laboriosam sunt ratione
+              obcaecati corrupti officiis labore, exercitationem porro facere
+              architecto esse?
+            </p>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <div>
+            <button class="btn btn-outline-secondary btn-sm">Modifier</button>
+            <button class="btn btn-outline-danger btn-sm">Supprimer</button>
+          </div>
+        </div>
+      </aside>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Calendar Page View - Volunteer - Nouveau Rendez-vous -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="calendar-container d-flex">
+        <!-- Left Panel: Monthly Calendar -->
+        <div class="calendar-panel p-3">
+          <h5 class="text-primary mb-3">Mon Calendrier</h5>
+          <!-- Calendar Grid -->
+          <div class="calendar-grid mb-3">
+            <!-- Header for days of the week -->
+            <div class="calendar-day">Lun</div>
+            <div class="calendar-day">Mar</div>
+            <div class="calendar-day">Mer</div>
+            <div class="calendar-day">Jeu</div>
+            <div class="calendar-day">Ven</div>
+            <div class="calendar-day">Sam</div>
+            <div class="calendar-day">Dim</div>
+            <!-- Dates grid -->
+            <div class="calendar-date"></div>
+            <!-- Empty cells for alignment -->
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date"></div>
+            <div class="calendar-date">1</div>
+
+            <div class="calendar-date">2</div>
+            <div class="calendar-date">3</div>
+            <div class="calendar-date">4</div>
+            <div class="calendar-date">
+              <div>5</div>
+              <div class="event"></div>
+            </div>
+            <div class="calendar-date">6</div>
+            <div class="calendar-date">7</div>
+            <div class="calendar-date">8</div>
+            <div class="calendar-date">9</div>
+            <div class="calendar-date">10</div>
+            <div class="calendar-date">11</div>
+            <div class="calendar-date">12</div>
+            <div class="calendar-date">
+              <div>13</div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">14</div>
+            <div class="calendar-date">15</div>
+            <div class="calendar-date">16</div>
+            <div class="calendar-date">17</div>
+            <div class="calendar-date">18</div>
+            <div class="calendar-date">19</div>
+            <div class="calendar-date">20</div>
+            <div class="calendar-date">21</div>
+            <div class="calendar-date">22</div>
+            <div class="calendar-date">23</div>
+            <div class="calendar-date">24</div>
+            <div class="calendar-date">
+              <div>25</div>
+              <div class="event"></div>
+              <div class="appointment"></div>
+            </div>
+            <div class="calendar-date">26</div>
+            <div class="calendar-date">27</div>
+            <div class="calendar-date">28</div>
+            <div class="calendar-date">29</div>
+            <div class="calendar-date">30</div>
+            <div class="calendar-date">31</div>
+          </div>
+          <!-- Month Label and Navigation Buttons -->
+          <div class="text-center mt-2">
+            <p class="mb-1 text-muted">Décembre 2024</p>
+            <div class="d-flex justify-content-center gap-3">
+              <button class="btn btn-outline-secondary btn-sm">&lt;</button>
+              <button class="btn btn-outline-primary btn-sm">
+                Aujourd'hui
+              </button>
+              <button class="btn btn-outline-secondary btn-sm">&gt;</button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: Events List -->
+        <div class="event-panel p-3">
+          <h5 class="text-primary">Mes Événements et Rendez-vous</h5>
+          <div class="d-flex justify-content-between mb-3">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-secondary btn-sm dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-bs-toggle="dropdown"
+                data-bs-auto-close="true"
+                aria-expanded="true"
+              >
+                Tous les événements et RDV
+              </button>
+            </div>
+            <div>
+              <button class="btn btn-primary btn-sm">
+                Nouveau Rendez-vous
+              </button>
+              <button class="btn btn-secondary btn-sm">Nouvel Événement</button>
+            </div>
+          </div>
+          <ul class="list-group">
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Cours mathématiques</strong>
+              <small class="text-secondary">5 Décembre @ 10:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Session d'étude en groupe</strong>
+              <small class="text-secondary">5 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Préparation à l'examen final</strong>
+              <small class="text-secondary">5 Décembre @ 15:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Réunion parentale</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">13 Décembre @ 16:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Revue des devoirs d'anglais</strong>
+              <small class="text-secondary">25 Décembre @ 09:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <span
+                ><strong class="text-primary">Consultation étudiante</strong>
+                <span class="small">avec </span> Louis</span
+              >
+              <small class="text-secondary">25 Décembre @ 14:00</small>
+            </li>
+            <li class="list-group-item f-flex justify-content-between">
+              <strong>Coordination des bénévoles</strong>
+              <small class="text-secondary">25 Décembre @ 19:00</small>
+            </li>
+          </ul>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Planifier un nouveau rendez-vous</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <!-- Title and avec Whom Fields -->
+          <div class="row mb-3">
+            <div class="col-md-7">
+              <label for="eventTitle" class="form-label fw-bold">Titre</label>
+              <input type="text" id="eventTitle" class="form-control" />
+            </div>
+            <div class="col-md-5">
+              <label for="selectParticipants" class="form-label fw-bold"
+                >avec</label
+              >
+              <select id="selectParticipants" class="form-select">
+                <option selected>Sélectionner...</option>
+                <option value="JohnDoe">John Doe</option>
+                <option value="JaneSmith">Jane Smith</option>
+                <option value="EmilyDavis">Emily Davis</option>
+                <option value="MichaelBrown">Michael Brown</option>
+              </select>
+            </div>
+          </div>
+          <!-- Date and Time Fields -->
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <label for="eventDate" class="form-label fw-bold">Date</label>
+              <input type="date" id="eventDate" class="form-control" />
+            </div>
+            <div class="col-md-6">
+              <label for="eventTime" class="form-label fw-bold">Heure</label>
+              <input type="time" id="eventTime" class="form-control" />
+            </div>
+          </div>
+          <!-- Event Details -->
+          <div class="mb-3">
+            <label for="eventDetails" class="form-label fw-bold">Détails</label>
+            <textarea
+              id="eventDetails"
+              rows="4"
+              class="form-control"
+            ></textarea>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <button class="btn btn-primary btn-sm">Planifier</button>
+        </div>
+      </aside>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+  </body>
+</html>

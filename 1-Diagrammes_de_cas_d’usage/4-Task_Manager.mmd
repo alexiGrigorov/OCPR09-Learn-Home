@@ -1,0 +1,51 @@
+---
+title: Gestion des tâches
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        UC_SelectTask(["Sélectionner une tâche"])
+        UC_CreateTask(["Ajouter une tâche"])
+        UC_EditTask(["Modifier la tâche"])
+        UC_DeleteTask(["Supprimer la tâche"])
+        UC_MarkTaskComplete(["Marquer la tâche comme terminée"])
+        UC_SelectAssignment(["Sélectionner un devoir"])
+        UC_CreateAssignment(["Attribuer un devoir"])
+        UC_EditAssignment(["Modifier le devoir"])
+        UC_DeleteAssignment(["Supprimer le devoir"])
+        UC_MarkAssignmentComplete(["Marquer le devoir comme terminé"])
+        UC_SortList(["Trier la liste des tâches par priorité / date limite"])
+        UC_SortStudents(["Filtrer la liste des devoirs par étudiants"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_SelectTask
+    User --> UC_CreateTask
+    User --> UC_SortList
+    User --> UC_SelectAssignment
+    Volunteer --> UC_SelectAssignment
+    Volunteer --> UC_CreateAssignment
+    Volunteer --> UC_SortStudents
+
+    %% Intra Use Case Relationships
+    UC_SelectTask -->|<< extend >>| UC_EditTask
+    UC_SelectTask -->|<< extend >>| UC_DeleteTask
+    UC_SelectTask -->|<< extend >>| UC_MarkTaskComplete
+    UC_SelectAssignment -->|<< extend >>| UC_EditAssignment
+    UC_SelectAssignment -->|<< extend >>| UC_DeleteAssignment
+    UC_SelectAssignment -->|<< extend >>| UC_MarkAssignmentComplete
+
+    %% Critical Paths
+    linkStyle 2,3,11,5,6,7,14 stroke:indigo,stroke-width:3px;

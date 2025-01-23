@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Learn@Home Mockups</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsXp1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- General styles -->
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .mockup-view {
+        width: 960px;
+        height: 700px;
+        border-radius: 12px;
+        margin: 20px auto;
+        padding: 40px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        background-color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: relative;
+      }
+      .mockup-view header {
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .mockup-view main {
+        flex: 1;
+        display: grid;
+      }
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 12px;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 2;
+      }
+      .mockup-view aside {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 80%;
+        max-height: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: auto;
+        padding: 20px;
+        border-radius: 12px;
+        background-color: white;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        z-index: 3;
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .form-label {
+        font-weight: 500;
+      }
+    </style>
+
+    <!-- LOGIN SECTION -->
+    <style>
+      .login-form-container {
+        align-self: center;
+        width: 350px;
+        margin: auto;
+      }
+    </style>
+
+    <!-- CHAT SECTION -->
+    <style>
+      .chat-container {
+        grid-template-columns: 1fr 3fr;
+      }
+      .contact-list {
+        border-right: 1px solid #ddd;
+        padding-right: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      .list-group {
+        flex: 1;
+        overflow-y: auto;
+      }
+      .chat-window {
+        padding-left: 20px;
+        display: flex;
+        flex-direction: column;
+      }
+      .chat-body {
+        flex: 1;
+        overflow-y: auto;
+      }
+
+      .profile-pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ddd;
+        margin-right: 10px;
+      }
+      .list-group-item {
+        display: flex;
+        align-items: center;
+        flex-grow: 1;
+      }
+      .chat-bubble {
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+      .chat-bubble small {
+        font-size: 0.7rem;
+        align-self: flex-end;
+      }
+      .chat-bubble.sent {
+        background-color: #007bff;
+        color: white;
+        align-self: flex-end;
+      }
+      .chat-bubble.received {
+        background-color: #e9ecef;
+        align-self: flex-start;
+      }
+    </style>
+
+    <!-- CALENDAR SECTION -->
+    <style>
+      .calendar-container {
+        display: flex;
+        gap: 20px;
+      }
+      .calendar-panel {
+        width: 35%;
+        background: #f8f9fa;
+        border-right: 1px solid #ddd;
+      }
+      .event-panel {
+        flex: 1;
+        background: #fff;
+      }
+      .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 5px;
+      }
+      .calendar-day {
+        font-weight: bold;
+        text-align: center;
+
+        color: #6c757d;
+      }
+      .calendar-date {
+        text-align: center;
+        padding: 8px;
+        border-radius: 5px;
+        background: #f8f9fa;
+        border: 1px solid #dee2e6;
+        position: relative;
+      }
+      .calendar-date.selected {
+        background: #cfe2ff;
+        border: 1px solid #0d6efd;
+      }
+      .calendar-date .event {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #212529;
+        position: absolute;
+        bottom: 5px;
+        left: 35%;
+        transform: translateX(-50%);
+      }
+      .calendar-date .appointment {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #0d6efd;
+        position: absolute;
+        bottom: 5px;
+        left: 65%;
+        transform: translateX(-50%);
+      }
+    </style>
+
+    <!-- TASK MANAGEMENT SECTION -->
+    <style>
+      .task-sections {
+        grid-template-columns: 40% 60%;
+      }
+      .task-panel {
+        background: #f8f9fa;
+        border-right: 1px solid #ddd;
+      }
+
+      .task-details-panel {
+        width: 521px;
+      }
+
+      .priority-dot {
+        display: inline-block;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-left: 5px;
+      }
+
+      .task-selected {
+        background-color: #cfe2ff; /* Light blue background to indicate selection */
+        font-weight: bold; /* Highlight the text */
+        padding-left: 12px; /* Adjust padding for border space */
+      }
+    </style>
+
+    <!-- DASHBOARD SECTION -->
+    <style>
+      /* Grid layout for the dashboard */
+      .dashboard-container {
+        display: grid;
+        grid-template-areas:
+          "messages events"
+          "tasks tasks";
+        grid-template-columns: 1fr 2fr;
+        gap: 10px;
+        padding: 20px;
+      }
+
+      /* Styling for each section */
+      .unread-messages {
+        grid-area: messages;
+        background: #f0f8ff !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .unread-messages h5 {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 1.2rem;
+      }
+
+      .unread-messages .message-count {
+        font-size: 3rem;
+        text-align: center;
+        font-weight: bold;
+        color: #0d6efd; /* Primary blue color */
+      }
+
+      .unread-messages .btn {
+        align-self: flex-end;
+        padding: 6px 12px;
+      }
+
+      .upcoming-events {
+        grid-area: events;
+      }
+
+      .tasks-assignments {
+        grid-area: tasks;
+      }
+
+      /* Card styles */
+      .card {
+        background: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 16px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* List styles for tasks and assignments */
+      .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      /* Differentiation between tasks and assignments */
+      .task-label {
+        font-weight: bold;
+        color: #007bff;
+      }
+
+      .assignment-label {
+        font-weight: bold;
+        color: #28a745;
+      }
+    </style>
+
+    <!-- Chat Page View -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="chat-container">
+        <!-- Section de la liste de contacts -->
+        <div class="contact-list">
+          <button class="btn btn-secondary w-100 mb-3">
+            Ajouter un contact
+          </button>
+          <ul class="list-group">
+            <li class="list-group-item active">
+              <div class="profile-pic"></div>
+              John Doe
+            </li>
+            <li class="list-group-item">
+              <div class="profile-pic"></div>
+              Jane Smith
+              <span class="badge bg-danger rounded-pill">3</span>
+            </li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+          </ul>
+          <div class="mt-3 text-end">
+            <button class="btn btn-outline-secondary btn-sm ms-1">
+              Retirer
+            </button>
+            <button class="btn btn-outline-danger btn-sm">Bloquer</button>
+          </div>
+        </div>
+        <!-- Section de la fenêtre de discussion -->
+        <div class="chat-window">
+          <div
+            class="chat-title d-flex align-items-center justify-content-between mb-3"
+          >
+            <p class="mb-0"><strong>Discussion avec John Doe</strong></p>
+            <div>
+              <button class="btn btn-secondary btn-sm">Exporter</button>
+              <button class="btn btn-danger btn-sm">Signaler</button>
+            </div>
+          </div>
+          <div class="chat-body d-flex flex-column">
+            <div class="chat-bubble received">
+              Bonjour ! Comment allez-vous aujourd'hui ?<br /><small
+                >10:30</small
+              >
+            </div>
+            <div class="chat-bubble sent">
+              Je vais très bien, merci !<br /><small>10:32</small>
+            </div>
+            <div class="chat-bubble received">
+              C'est merveilleux à entendre !<br /><small>10:33</small>
+            </div>
+            <div class="mb-3"></div>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" />
+            <button class="btn btn-primary" type="button" id="button-addon2">
+              Envoyer
+            </button>
+          </div>
+        </div>
+      </main>
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+
+    <!-- Vue de la page de discussion - Modal - Ajouter un nouveau contact -->
+    <div class="mockup-view">
+      <header>
+        <div class="logo">Learn@Home</div>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link">Tableau de bord</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active">Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Calendrier</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Tâches</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled">Déconnexion</a>
+          </li>
+        </ul>
+      </header>
+      <main class="chat-container">
+        <!-- Section de la liste de contacts -->
+        <div class="contact-list">
+          <button class="btn btn-secondary w-100 mb-3">
+            Ajouter un contact
+          </button>
+          <ul class="list-group">
+            <li class="list-group-item active">
+              <div class="profile-pic"></div>
+              John Doe
+            </li>
+            <li class="list-group-item">
+              <div class="profile-pic"></div>
+              Jane Smith
+            </li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+            <li class="list-group-item" style="height: 56px"></li>
+          </ul>
+          <div class="mt-3 text-end">
+            <button class="btn btn-outline-secondary btn-sm ms-1">
+              Retirer
+            </button>
+            <button class="btn btn-outline-danger btn-sm">Bloquer</button>
+          </div>
+        </div>
+        <!-- Section de la fenêtre de discussion -->
+        <div class="chat-window">
+          <div
+            class="chat-title d-flex align-items-center justify-content-between mb-3"
+          >
+            <p class="mb-0"><strong>Discussion avec John Doe</strong></p>
+            <div>
+              <button class="btn btn-secondary btn-sm">Exporter</button>
+              <button class="btn btn-danger btn-sm">Signaler</button>
+            </div>
+          </div>
+          <div class="chat-body d-flex flex-column">
+            <div class="chat-bubble received">
+              Bonjour ! Comment allez-vous aujourd'hui ?<br /><small
+                >10:30</small
+              >
+            </div>
+            <div class="chat-bubble sent">
+              Je vais très bien, merci !<br /><small>10:32</small>
+            </div>
+            <div class="chat-bubble received">
+              C'est merveilleux à entendre !<br /><small>10:33</small>
+            </div>
+            <div class="mb-3"></div>
+          </div>
+          <div class="input-group">
+            <input type="text" class="form-control" />
+            <button class="btn btn-primary" type="button" id="button-addon2">
+              Envoyer
+            </button>
+          </div>
+        </div>
+      </main>
+      <div class="overlay"></div>
+      <aside class="shadow rounded p-4">
+        <div class="modal-header">
+          <h5 class="modal-title">Ajouter un nouveau contact</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Fermer"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <!-- Champ de recherche -->
+            <div class="mb-3">
+              <label for="searchField" class="form-label"
+                >Rechercher un contact</label
+              >
+              <input
+                type="text"
+                id="searchField"
+                class="form-control"
+                placeholder="Tapez pour rechercher..."
+                oninput="filterOptions()"
+              />
+            </div>
+            <!-- Options filtrables -->
+            <ul class="list-group" id="optionsList">
+              <li class="list-group-item">John Doe</li>
+              <li class="list-group-item">Jane Smith</li>
+              <li class="list-group-item">Emily Davis</li>
+              <li class="list-group-item">Michael Brown</li>
+            </ul>
+          </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-end">
+          <div>
+            <button class="btn btn-secondary btn-sm">Ajouter</button>
+          </div>
+        </div>
+      </aside>
+
+      <footer class="mt-2 border-top text-center">
+        <nav class="d-flex justify-content-end mb-2">
+          <a class="nav-link text-muted small">Aide</a>
+          <a class="nav-link text-muted small">Paramètres</a>
+          <a class="nav-link text-muted small">Support</a>
+          <a class="nav-link text-muted small">Politique de confidentialité</a>
+        </nav>
+        <p class="text-end text-muted">© 2024 Learn@Home</p>
+      </footer>
+    </div>
+  </body>
+</html>

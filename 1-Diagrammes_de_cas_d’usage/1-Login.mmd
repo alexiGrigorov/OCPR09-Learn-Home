@@ -1,0 +1,34 @@
+---
+title: Connexion
+---
+flowchart LR
+    %% Defining Actors with Horizontal Alignment
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+
+        Student o-.-o User
+        Volunteer o-.-o User
+    end
+
+    %% Defining Use Cases
+    subgraph "Cas d'Utilisations"
+        direction TB
+        UC_Login(["Connexion"])
+        UC_CreateAccount(["Créer un compte"])
+        UC_ForgotPassword(["Mot de passe oublié"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_Login
+    User --> UC_CreateAccount
+    User --> UC_ForgotPassword
+
+    %% Intra Use Case Relationships
+    UC_Login -->|<< extend >>| UC_ForgotPassword
+    
+
+    %% Critical Paths
+    linkStyle 2 stroke:indigo,stroke-width:3px;

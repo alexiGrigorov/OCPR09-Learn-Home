@@ -1,0 +1,31 @@
+---
+title: Tableau de bord
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        %% Interaction Use Cases
+        UC_AccessTaskManagement(["Accéder aux tâches"])
+        UC_AccessCalendar(["Accéder au calendrier"])
+        UC_AccessChat(["Accéder au chat"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_AccessTaskManagement
+    User --> UC_AccessCalendar
+    User --> UC_AccessChat
+
+    %% Critical Paths
+    linkStyle 2,3,4 stroke:indigo,stroke-width:3px;

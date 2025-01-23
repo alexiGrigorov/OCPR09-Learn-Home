@@ -1,0 +1,48 @@
+---
+title: Chat
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        UC_SelectContact(["Sélectionner un contact"])
+        UC_LoadChat(["Charger l'historique du chat"])
+        UC_TypeMessage(["Taper un message"])
+        UC_SendMessage(["Envoyer un message"])
+        UC_AddContact(["Ajouter un contact"])
+        UC_RemoveContact(["Supprimer un contact"])
+        UC_ReportContact(["Signaler un message"])
+        UC_BlockContact(["Bloquer un contact"])
+        UC_ExportChat(["Exporter l'historique du chat"])
+        UC_SeeUnreadMessage(["Déterminer s'il y a des messages non lus"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_SelectContact
+    User --> UC_AddContact
+    User --> UC_SeeUnreadMessage
+
+    %% Intra Use Case Relationships
+    UC_SelectContact -->|<< include >>| UC_LoadChat
+    UC_LoadChat --> UC_TypeMessage
+    UC_TypeMessage -->|<< extend >>| UC_SendMessage
+    UC_LoadChat -->|<< extend >>| UC_ReportContact
+    UC_LoadChat -->|<< extend >>| UC_ExportChat
+    UC_SelectContact --> UC_RemoveContact
+    UC_SelectContact --> UC_BlockContact
+
+    %% Critical Paths
+    linkStyle 2,5,6,7 stroke:indigo,stroke-width:3px;
+
+

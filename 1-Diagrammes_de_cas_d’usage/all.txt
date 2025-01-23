@@ -1,0 +1,218 @@
+---
+title: Connexion
+---
+flowchart LR
+    %% Defining Actors with Horizontal Alignment
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+
+        Student o-.-o User
+        Volunteer o-.-o User
+    end
+
+    %% Defining Use Cases
+    subgraph "Cas d'Utilisations"
+        direction TB
+        UC_Login(["Connexion"])
+        UC_CreateAccount(["Créer un compte"])
+        UC_ForgotPassword(["Mot de passe oublié"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_Login
+    User --> UC_CreateAccount
+    User --> UC_ForgotPassword
+
+    %% Intra Use Case Relationships
+    UC_Login -->|<< extend >>| UC_ForgotPassword
+    
+
+    %% Critical Paths
+    linkStyle 2 stroke:indigo,stroke-width:3px;
+
+---
+title: Chat
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        UC_SelectContact(["Sélectionner un contact"])
+        UC_LoadChat(["Charger l'historique du chat"])
+        UC_TypeMessage(["Taper un message"])
+        UC_SendMessage(["Envoyer un message"])
+        UC_AddContact(["Ajouter un contact"])
+        UC_RemoveContact(["Supprimer un contact"])
+        UC_ReportContact(["Signaler un message"])
+        UC_BlockContact(["Bloquer un contact"])
+        UC_ExportChat(["Exporter l'historique du chat"])
+        UC_SeeUnreadMessage(["Déterminer s'il y a des messages non lus"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_SelectContact
+    User --> UC_AddContact
+    User --> UC_SeeUnreadMessage
+
+    %% Intra Use Case Relationships
+    UC_SelectContact -->|<< include >>| UC_LoadChat
+    UC_LoadChat --> UC_TypeMessage
+    UC_TypeMessage -->|<< extend >>| UC_SendMessage
+    UC_LoadChat -->|<< extend >>| UC_ReportContact
+    UC_LoadChat -->|<< extend >>| UC_ExportChat
+    UC_SelectContact --> UC_RemoveContact
+    UC_SelectContact --> UC_BlockContact
+
+    %% Critical Paths
+    linkStyle 2,5,6,7 stroke:indigo,stroke-width:3px;
+
+
+---
+title: Calendrier
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        UC_NavigateCalendar(["Naviguer dans le calendrier mensuel"])
+        UC_ReturnToCurrentMonth(["Retour au mois en cours (bouton « Aujourd'hui »)"])
+        UC_SelectDay(["Sélectionner un jour (filtre)"])
+        UC_DeselectDay(["Annuler la sélection d'un jour (afficher tous les événements)"])
+        UC_ViewEventDetails(["Afficher les détails d'un événement"])
+        UC_ScheduleEvent(["Planifier un nouvel événement"])
+        UC_EditEvent(["Modifier un événement"])
+        UC_DeleteEvent(["Supprimer un événement"])
+        UC_ViewAppointmentDetails(["Afficher les détails d'un rendez-vous"])
+        UC_ScheduleAppointment(["Planifier un nouveau rendez-vous"])
+        UC_EditAppointment(["Modifier un rendez-vous"])
+        UC_DeleteAppointment(["Supprimer un rendez-vous"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_ScheduleEvent
+    User --> UC_ViewEventDetails
+    Volunteer --> UC_ScheduleAppointment
+    User --> UC_ViewAppointmentDetails
+    User --> UC_NavigateCalendar
+    User --> UC_ReturnToCurrentMonth
+    User --> UC_SelectDay
+
+    %% Intra Use Case Relationships
+    UC_SelectDay -->|<< extend >>| UC_DeselectDay
+    UC_ReturnToCurrentMonth -->|<< include >>| UC_DeselectDay
+    UC_ViewEventDetails -->|<< extend >>| UC_EditEvent
+    UC_ViewEventDetails -->|<< extend >>| UC_DeleteEvent
+    UC_ViewAppointmentDetails -->|<< extend >>| UC_EditAppointment
+    UC_ViewAppointmentDetails -->|<< extend >>| UC_DeleteAppointment
+
+    %% Critical Paths
+    linkStyle 2,3,4,5 stroke:indigo,stroke-width:3px;
+
+---
+title: Gestion des tâches
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        UC_SelectTask(["Sélectionner une tâche"])
+        UC_CreateTask(["Ajouter une tâche"])
+        UC_EditTask(["Modifier la tâche"])
+        UC_DeleteTask(["Supprimer la tâche"])
+        UC_MarkTaskComplete(["Marquer la tâche comme terminée"])
+        UC_SelectAssignment(["Sélectionner un devoir"])
+        UC_CreateAssignment(["Attribuer un devoir"])
+        UC_EditAssignment(["Modifier le devoir"])
+        UC_DeleteAssignment(["Supprimer le devoir"])
+        UC_MarkAssignmentComplete(["Marquer le devoir comme terminé"])
+        UC_SortList(["Trier la liste des tâches par priorité / date limite"])
+        UC_SortStudents(["Filtrer la liste des devoirs par étudiants"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_SelectTask
+    User --> UC_CreateTask
+    User --> UC_SortList
+    User --> UC_SelectAssignment
+    Volunteer --> UC_SelectAssignment
+    Volunteer --> UC_CreateAssignment
+    Volunteer --> UC_SortStudents
+
+    %% Intra Use Case Relationships
+    UC_SelectTask -->|<< extend >>| UC_EditTask
+    UC_SelectTask -->|<< extend >>| UC_DeleteTask
+    UC_SelectTask -->|<< extend >>| UC_MarkTaskComplete
+    UC_SelectAssignment -->|<< extend >>| UC_EditAssignment
+    UC_SelectAssignment -->|<< extend >>| UC_DeleteAssignment
+    UC_SelectAssignment -->|<< extend >>| UC_MarkAssignmentComplete
+
+    %% Critical Paths
+    linkStyle 2,3,11,5,6,7,14 stroke:indigo,stroke-width:3px;
+
+---
+title: Tableau de bord
+---
+flowchart LR
+    %% Defining Actors
+    subgraph "Utilisateurs"
+        direction LR
+        Student(("Enfant"))
+        Volunteer(("Bénévole"))
+        User(("Utilisateur"))
+        %% Inheritance
+        Student --> User
+        Volunteer --> User
+    end
+
+    %% Defining Use Cases
+    subgraph "Use Cases"
+        direction TB
+        %% Interaction Use Cases
+        UC_AccessTaskManagement(["Accéder aux tâches"])
+        UC_AccessCalendar(["Accéder au calendrier"])
+        UC_AccessChat(["Accéder au chat"])
+    end
+
+    %% Actor to Use Case Relationships
+    User --> UC_AccessTaskManagement
+    User --> UC_AccessCalendar
+    User --> UC_AccessChat
+
+    %% Critical Paths
+    linkStyle 2,3,4 stroke:indigo,stroke-width:3px;
