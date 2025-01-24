@@ -38,8 +38,8 @@
 
 ### US3.5 : Les bénévoles sont les seuls à pouvoir gérer les rendez-vous avec leurs élèves
 
-- **En tant que** bénévole, **je veux** créer et gérer des rendez-vous avec mes étudiants **afin de** rester organisé tout tout en les accompagnant dans leur apprentissage.
+- **En tant que** bénévole, **je veux** créer et gérer des rendez-vous avec mes étudiants **afin de** rester organisé tout en les accompagnant dans leur apprentissage.
 - **Critères d'acceptation :**
   1. Un bénévole doit avoir la possibilité de filtrer les rendez-vous par étudiant.
   2. Les bénévoles doivent pouvoir planifier des rendez-vous avec ses étudiants.
-  3. Les bénévoles peuvent modifier et supprimer les rendez-vous avec les étudiants. Les étudiants peuvent consulter leurs rendez-vous mais ne peuvent pas les modifier.
+  3. Les bénévoles peuvent modifier et supprimer des rendez-vous avec les étudiants. Les étudiants peuvent consulter leurs rendez-vous mais ne peuvent pas les modifier.
